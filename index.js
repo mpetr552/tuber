@@ -8,7 +8,7 @@ var config = require('./config');
 var voice = require('./routes/voice');
 var message = require('./routes/message');
 var results = require('./routes/results');
-var cors = require('cors');
+var cors = require('cors'); //added
 
 // initialize MongoDB connection
 // have to serve the: webpack-dev-server --progress --colors
@@ -20,7 +20,7 @@ mongoose.connection.on('error', function() {
 // Create Express web app with some useful middleware
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(__dirname + '/dist'))
+app.use(express.static(__dirname + '/dist')) //added
 app.use(urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
@@ -33,6 +33,7 @@ app.get('', function (request, response){
 app.get('/', function (request, response){
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
+//added above lines except 2^^
 
 // Twilio Webhook routes
 app.post('/voice', voice.interview);
@@ -41,13 +42,13 @@ app.post('/message', message);
 
 app.get('/dist/:bundlefile', function (request, response){
   response.sendFile(path.resolve(__dirname, 'dist', request.params.bundlefile))
-})
+}) //added
 
 // Ajax route to aggregate response data for the UI
-app.get('/api/rides', results);
+app.get('/api/rides', results); //added
 
 app.get('/*', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html')) //added
 })
 // Create HTTP server and mount Express app
 var server = http.createServer(app);

@@ -10,6 +10,7 @@ module.exports = function(request, response) {
             response.status(500).send(err);
         } else {
             response.send({
+                survey: survey, //added this line in because checked twilio docs
                 results: docs
             });
         }

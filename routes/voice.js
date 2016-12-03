@@ -1,7 +1,7 @@
 var twilio = require('twilio');
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
-var GoogleMapsLoader = require('googlemaps')
+var GoogleMapsLoader = require('googlemaps') //add these 3 lines in for google map geocoder
 var geocoder = require('../geocoding/geocoder')
 var uber = require('../uber/uber')
 
@@ -82,6 +82,8 @@ exports.interview = function(request, response) {
     });
 };
 
+
+//more stuff added in for geocoder
 // Transcripton callback - called by Twilio with transcript of recording
 // Will update survey response outside the interview call flow
 exports.transcription = function(request, response) {
